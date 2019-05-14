@@ -1,0 +1,4 @@
+Requeriment
+
+conda install -c conda-forge oct2py
+
