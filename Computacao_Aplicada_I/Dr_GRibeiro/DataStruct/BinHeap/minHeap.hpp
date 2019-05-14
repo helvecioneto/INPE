@@ -102,10 +102,11 @@ void MinHeap::insertKey(int k){                 // Function to insert new keys
         return;
     }
     
-    heap_size++;                                // Increase heap size
+    heap_size++;
+                                 // Increase heap size
     int i = heap_size - 1;                      
     harr[i] = k;                                // Insert key at array
-
+    std::cout << k << "\n"; 
     while ( i != 0 &&harr[parent(i)]){          // Property of min heap verification
         swap(&harr[i], &harr[parent(i)]);
         i = parent(i);
