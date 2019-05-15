@@ -4,20 +4,17 @@
 using namespace std;
 
 int main(){
-    Heap t(12);
+    Heap<int> t(12);
 
-    t.insert(2);
-    t.insert(1);
-    t.insert(8);
-    t.insert(11);
-    t.insert(7);
-    t.insert(5);
     t.insert(3);
-    t.insert(9);
+    t.insert(2);
     t.insert(4);
+    t.insert(1);
 
-    t.extract_max();
-    t.maximum();
-
+    cout << "Heap is: ";
     t.printHeap();
+    cout << "Heap is: \n";
+    t.printHeap();
+    t.extract_max();
+    cout << "\nMax is: [" << t.maximum()  << "]" << endl;
 }

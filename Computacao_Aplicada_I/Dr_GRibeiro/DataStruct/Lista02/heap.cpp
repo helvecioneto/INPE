@@ -3,91 +3,100 @@
 
 Heap::Heap(int cap){
     this->harr = new int[cap];
-    this->capacity = cap;
-    this->heap_size = 0;
+    this->capacity_ = cap;
+    this->last_ = 0;
 }
 
-void Heap::insert(int k){
-    if(heap_size == capacity){  
-        std::cout << "\n Array is Overflow!\n";
-        return;
-    }
-    heap_size++;
-    int i = heap_size - 1;
-    harr[i] = k;
-    while ( i != 0 &&harr[parent(i)]){
-        swap(&harr[i], &harr[parent(i)]);
-        i = parent(i);
-    }
-    
-}
-
-int Heap::parent(int i){                     // Parent of actual heap implementation
+//OK    =  i = child
+const int Heap::getParent(int i) const{                     // Parent of actual heap implementation
     return ( i - 1 ) / 2;
 }
 
-void Heap::swap( int *x, int *y){            // Function to swap elements
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-int Heap::leftChild(int i){
+//OK
+const int Heap::leftChild(int i) const{
     return 2*i + 1;
 }
 
-int Heap::rightChild(int i){
+//OK
+const int Heap::rightChild(int i) const{
     return 2*i + 2;
 }
 
-void Heap::maxHeapify(int i){
-    // Find Left Child
-    int left = leftChild(i);
-    
-    // Find Right Child
-    int right = rightChild(i);
+void Heap::fixUpHeap() const{
+    int child = this->last_ - 1;
+    int parent = getParent(child);
 
-    // Find the largest among 3 nodes
-    int largest = i;
-
-    // Check Left node is Larger than Current Node
-    if ( left <= heap_size && harr[left] > harr[largest]){
-        largest = left;
-        std::cout << "Largest: " << largest;
-    }
-
-    // Check Right node is Larger than Current Node
-    if ( right <= heap_size && harr[right] > harr[largest]){
-        largest = right;
-    }
-
-    // swao the largest node with current node
-    if ( largest != i ){
-        int temp = harr[i];
-        harr[i] = harr[largest];
-        harr[largest] = temp;
-        maxHeapify(largest);
+    while ( this->harr[child] > this->harr[parent] && child >=0 && parent >=0){
+        swap(child, parent);
+        child = parent;
+        parent = getParent(child);
     }
 }
 
-int Heap::maximum(){
+void Heap::fixDownHeap() const{
+    int parent = 0;
+
+    while(true) {
+        int l = leftChild(parent);
+        int r = rightChild(parent);
+        int len = this->last_;
+        int largest = parent;
+
+        if( l < len && this->harr[l] > this->harr[largest])
+            largest = l;
+        
+        if( r < len && this->harr[r] > this->harr[largest])
+            largest = r;
+
+        if( largest != parent){
+            swap(this->harr[largest], this->harr[parent]);
+            parent = largest;
+        }else{
+            break;
+        }
+    }
+}
+
+
+//OK
+void Heap::swap( int child, int parent) const{            // Function to swap elements
+    int temp = this->harr[child];
+    this->harr[child] = this->harr[parent];
+    this->harr[parent] = temp;
+}
+
+//OK
+void Heap::insert(int k){
+    if(this->last_+1 >= this->capacity_){
+        std::cout << "\n Array is Overflow!\n";
+        return;
+    }
+
+    this->harr[this->last_++] = k;
+    this->fixUpHeap();
+}
+
+//OK
+int Heap::maximum() const{
     return harr[0];
 }
 
+//OK
 int Heap::extract_max(){
-    int maxItem = harr[0];
-    // Replace max with last
-    harr[0] = harr[heap_size - 1];
-    heap_size = heap_size - 1;
+    int child = this->last_+1;
+    swap(this->harr[child], this->harr[0]);
 
-    // Maintain Heap Property
-    maxHeapify(0);
-    return maxItem;
+    int v = this->harr[last_--];
+
+    this->fixDownHeap();
 }
 
 void Heap::printHeap(){
-    for (int i = 0; i < heap_size; i++){
-        std::cout<<std::endl;
+    for(int i=0; i < this->last_; ++i){
+        std::cout << (i>0 ? "|" : "") << this->harr[i];
     }
-    std::cout<<std::endl;
+}
+
+Heap::~Heap(){
+    delete[] this->harr;
 }
