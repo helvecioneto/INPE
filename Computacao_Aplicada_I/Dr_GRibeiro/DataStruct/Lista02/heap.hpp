@@ -1,44 +1,54 @@
 #ifndef __HEAP__
 #define __HEAP__
 
+/**
+ *      CAP-241- Computação Aplicada - Instituto Nacional de Pesquisas Espaciais - INPE
+ *      
+ * Estruturado de dados elementar - Heap
+ * 
+ * @based http://ads.dpi.inpe.br/lib/exe/fetch.php?media=wiki:turma2019:estruturas_dados_elementares_parte_04.pdf
+ *  
+ * @author Helvecio Neto    -     2019
+ */
+
 #include <iostream>
 
 template<class T>
 class Heap{
 
-    T *harr;      // Pointer to array used in heap
-    int capacity_;   // Max possible size of min heap
-    int last_;  // Current nodes of min heap
+    T *harr;           // Ponteiro para o Array utilizado no Heap
+    int capacity_;     // Capacidade máxima do Heap
+    int last_;         // Ultimo Elemento do Heap
 
     private:
 
-    const int getParent(int i) const;                      // Parent of actual heap
-    const int leftChild(int i) const;
-    const int rightChild(int i) const;
+    const int getParent(int i) const;       // Retorna o valor do nó Pai
+    const int leftChild(int i) const;       // Retorna o valor do filho a esquerda
+    const int rightChild(int i) const;      // Retorna o valor do filho a direita
 
-    void fixUpHeap() const;                 // Moves i of ar
-    void fixDownHeap() const;                 // Moves i of ar
-    void swap(int x, int y) const;              // Function to swap two integers valu
+    void fixUpHeap() const;                 // Função recursiva para reajustar o Heap por cima
+    void fixDownHeap() const;               // Função recursiva para reajustar o Heap por baixo
+    void swap(int x, int y) const;          // Função para troca de elementos Pai e Filho
 
     public:
 
-    Heap(int capacity);
-    void insert(T k);
-    int maximum() const;
-    int extract_max();
-    void printHeap();
-    ~Heap();                // Destructor
+    Heap(int capacity);                     // Método Construtor
+    void insert(T k);                       // Função de inserção de elemento no Heap
+    int maximum() const;                    // Retorna o elemento do MaxHeap
+    int extract_max();                      // Extrai o valor do MaxHeap
+    void printHeap();                       // Função para exibir o Heap em seu estádo atual
+    ~Heap();                                // Destructor
 };
 
 template<class T>
     Heap<T>::Heap(int cap){
-    this->harr = new T[cap];
+    this->harr = new T[cap];                
     this->capacity_ = cap;
     this->last_ = 0;
 }
 
 template<class T>
-const int Heap<T>::getParent(int i) const{                     // Parent of actual heap implementation
+const int Heap<T>::getParent(int i) const{
     return ( i - 1 ) / 2;
 }
 
