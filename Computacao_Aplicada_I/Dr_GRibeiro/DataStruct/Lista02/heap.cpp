@@ -49,7 +49,7 @@ void Heap::fixDownHeap() const{
             largest = r;
 
         if( largest != parent){
-            swap(this->harr[largest], this->harr[parent]);
+            swap(largest, parent);
             parent = largest;
         }else{
             break;
