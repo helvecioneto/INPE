@@ -21,7 +21,7 @@ int main(){
     poly.push_back(p2);
     poly.push_back(p3);
     poly.push_back(p4);
-    //poly.push_back(p1);
+    poly.push_back(p1);
 
    Polygon poly2(poly);
    cout << "Ponto: (" << a.get_x() << "," << a.get_y() << ")" << endl;

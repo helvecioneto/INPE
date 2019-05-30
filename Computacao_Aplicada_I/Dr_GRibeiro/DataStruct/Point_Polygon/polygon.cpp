@@ -22,7 +22,7 @@ Polygon::Polygon(const std::vector<Point> ps){
     vs = ps;
     n = vs.size();
     vs.push_back(vs.front());
-    std::cout << "Poligono criado, tamanho:" << n << std::endl;
+    std::cout << "Poligono criado, vertices:" << n << std::endl;
     std::cout << "Vertices: ";
     for (int i = 0; i < n; ++i){
         std::cout << "(" << ps[i].get_x() << "," << ps[i].get_y() << ")" ;
