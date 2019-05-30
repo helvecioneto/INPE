@@ -21,8 +21,11 @@ const double Point::get_y() const {
 Polygon::Polygon(const std::vector<Point> ps){
     vs = ps;
     n = vs.size();
-    vs.push_back(vs.front());
-    std::cout << "Poligono criado, vertices:" << n << std::endl;
+    
+    //vs.push_back(vs.front());
+
+
+    std::cout << "Polígono criado, vertices:" << n << std::endl;
     std::cout << "Vertices: ";
     for (int i = 0; i < n; ++i){
         std::cout << "(" << ps[i].get_x() << "," << ps[i].get_y() << ")" ;
@@ -31,9 +34,6 @@ Polygon::Polygon(const std::vector<Point> ps){
 }
 
 auto Polygon::orientation(const Point& P, const Point& Q, const Point& R) const{
-
-    //return ( Q.get_y() - P.get_y()) * ( R.get_x() - Q.get_x() ) - 
-    //       ( Q.get_x() - P.get_x()) * ( R.get_y() - Q.get_y() );
 
     return ( P.get_x() * Q.get_y() + P.get_y() * R.get_x() + Q.get_x() * R.get_y() ) - 
            ( R.get_x() * Q.get_y() + R.get_y() * P.get_x() + Q.get_x() * P.get_y() );
@@ -58,7 +58,7 @@ double Polygon::AngleTest(const Point P, const Point A, const Point B){
 
     //std::cout << ux << std::endl;
 
-    auto vx = P.get_x() - B.get_y();
+    auto vx = P.get_x() - B.get_x();
     auto vy = P.get_y() - B.get_y();
 
     auto num = ux * vx + uy * vy;
