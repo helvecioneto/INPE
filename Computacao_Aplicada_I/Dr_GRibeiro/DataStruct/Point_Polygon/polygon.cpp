@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 
+
 Point::Point(double x, double y){
     this->x_ = x;
     this->y_ = y;
@@ -68,7 +69,6 @@ double Polygon::AngleTest(const Point P, const Point A, const Point B){
 
 //Verifica se pontos não são iguais
 bool Polygon::equals( double x, double y){
-    const double EPS { 1e-9 };
 
     return abs(x - y) < EPS;
 }
@@ -84,7 +84,7 @@ bool Polygon::contains(const Point P){
 
         auto d = orientation(P, vs[i], vs[i + 1]);
 
-        std::cout << "\nValor de P: " << vs[i + i].get_x() << std::endl;
+        //std::cout << "\nValor de P: " << vs[i + i].get_x() << std::endl;
 
         if (equals(d,0))
             return true;
@@ -96,6 +96,6 @@ bool Polygon::contains(const Point P){
 
     static const double PI = acos(-1.0);
 
-    std::cout << PI << std::endl;
+    //std::cout << PI << std::endl;
     return equals(fabs(sum), 2*PI);
 }

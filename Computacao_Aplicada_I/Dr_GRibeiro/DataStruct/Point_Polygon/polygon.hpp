@@ -1,6 +1,7 @@
 #ifndef __POLYGON_HPP_
 #define __POLYGON_HPP__
 #include <vector>
+#define EPS 1e-9
 
 
 class Point

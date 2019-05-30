@@ -12,7 +12,7 @@ int main(){
     Point p4(0,10);
     //Point p5(5,5);
 
-    Point a(12,5);
+    Point a(500,20);
 
     vector <Point> poly;
 
@@ -21,15 +21,14 @@ int main(){
     poly.push_back(p2);
     poly.push_back(p3);
     poly.push_back(p4);
-    poly.push_back(p1);
-
+    //poly.push_back(p1);
 
    Polygon poly2(poly);
    cout << "Ponto: (" << a.get_x() << "," << a.get_y() << ")" << endl;
 
-   cout <<  (poly2.convex() ? "Convexo" : "Concavo")  << endl;
+   cout << "Polígono é: " << (poly2.convex() ? "Convexo" : "Concavo")  << endl;
 
-   cout << "Contem :" << poly2.contains(a) << endl;
+   cout <<  "Ponto " << "(" << a.get_x() << "," << a.get_y() << ") está: " << (poly2.contains(a) ? "Dentro" : "Fora") << endl;
 
     return 0;
 }
