@@ -1,6 +1,6 @@
 #include <iostream>
-#include "binTree.hpp"
+//#include "binTree.hpp"
 
 int main(){
-    binaryHeap h;
+    std::cout << "Teste";
 }
