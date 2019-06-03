@@ -10,9 +10,9 @@ def create_data():
 	octave.eval("redNorm = powernoise(2,4096,'normalize')")
 	octave.eval("redRand = powernoise(2,4096,'randpower')")
 
-	octave.eval("s8 = pmodel(4096,0.52,1.66)")
-	octave.eval("s9 = pmodel(4096,0.62,0.45)")
-	octave.eval("s10 = pmodel(4096,0.72,0.75)")
+	octave.eval("s8 = pmodel(4096,0.52,-1.66)")
+	octave.eval("s9 = pmodel(4096,0.62,-0.45)")
+	octave.eval("s10 = pmodel(4096,0.72,-0.75)")
 
 	# Salvando dados
 	octave.eval("dlmwrite ('./data/s1_white_noise.csv',whiteNorm)")

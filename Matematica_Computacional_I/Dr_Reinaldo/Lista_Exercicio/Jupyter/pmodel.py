@@ -6,11 +6,12 @@ def pmodel(noValues, p, slope):
     
     # Calculate length of time series
     noOrders = mt.ceil(mt.log2(noValues))
+    noValuesGenerated = mt.pow(2, noOrders)
     
     #noValuesGenerated = 2**(noOrders)
     
     # y is the time series generated with the p-model.
-    y = 1
+    y = np.array([1])
         
     for i in range(0,noOrders):
         y = next_step_1d(y,p)
@@ -30,46 +31,46 @@ def pmodel(noValues, p, slope):
         x = x + meanVal
     else:
         x = y
-    return(np.round (x,decimals=5))
+
+    y = y[0:noValues + 1]
+    x = x[0:noValues + 1]
+
+    return(np.round (x,decimals=8))
 
 def next_step_1d(y,p):
-    tam = np.size(y)
-        
-    np.random.seed(0)
-    
+    tam = len(y)    
     y2 = np.zeros(tam*2)
-    sign = np.random.rand(tam)-0.5
-    sign = sign/np.abs(sign)
+
+    sign = np.random.uniform(0, 1, tam) - 0.5
+    sign /= abs(sign)
     
-    y2 [0:(2*tam-1):2] = y + sign*(1-2*p)*y
-    y2 [1:(2*tam):2] = y - sign*(1-2*p)*y
+    y2[::2] = y + sign * (1 - 2 * p) * y
+    y2[1::2] = y - sign * (1 - 2 * p) * y
     
     return y2
 
 def fractal_spectrum_1d(noValuesF, slope):
 
     ori_vector_size = noValuesF
-    ori_half_size = ori_vector_size/2
+    ori_half_size = ori_vector_size // 2
     
-    a = np.zeros(ori_vector_size+1)
+    a = np.zeros(ori_vector_size)
+    
     ori_half_size = int(ori_half_size)
    
-    for t2 in range(1,ori_half_size):
-        
+    for t2 in range(1, (ori_half_size + 1) + 1, 1):
         index = t2 - 1
         t4 = 2 + ori_vector_size - t2
-        
-        if ( t4 > ori_half_size):
+    
+        if t4 > ori_vector_size:
             t4 = t2
-
-        if index <= 0:
-            coeff = 0
+    
+        if index == 0:
+            coeff = 1
         else:
-            coeff = np.power(index, slope) 
+            coeff = index ** slope
+        a[t2 - 1] = coeff
+        a[t4 - 1] = coeff
 
-        a[t2] = coeff
-        a[t4] = coeff
-        
-    a[1] = 0
-        
-    return a[1:].T
+    a[0] = 0
+    return a
