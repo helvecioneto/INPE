@@ -23,13 +23,13 @@ class Polygon
         int n; 
         Polygon(const std::vector<Point> ps);
 
-        auto orientation(const Point P, const Point Q, const Point R) const;              // Orientação do Poligono
+        auto orientation(const Point& P, const Point& Q, const Point& R) const;              // Orientação do Poligono
         bool convex() const;                                                                // Verifica convex
 
     //Point in Polygons
         double AngleTest(const Point P, const Point A, const Point B);
         bool equals(double x, double y);
-        bool contains(const Point& P);
+        bool contains(const Point P);
 
         //double distance(cosnt Point)
 };
@@ -38,4 +38,3 @@ class Polygon
 
 
 #endif // __POLYGON_HPP__
-

@@ -2,8 +2,6 @@
 #include <iostream>
 #include <cmath>
 
-#define EPS 1e-9
-
 
 Point::Point(double x, double y){
     this->x_ = x;
@@ -35,14 +33,10 @@ Polygon::Polygon(const std::vector<Point> ps){
     std::cout << std::endl;
 }
 
-auto Polygon::orientation(const Point P, const Point Q, const Point R) const{
+auto Polygon::orientation(const Point& P, const Point& Q, const Point& R) const{
 
-    auto ori = ( P.get_x() * Q.get_y() + P.get_y() * R.get_x() + Q.get_x() * R.get_y() ) - 
+    return ( P.get_x() * Q.get_y() + P.get_y() * R.get_x() + Q.get_x() * R.get_y() ) - 
            ( R.get_x() * Q.get_y() + R.get_y() * P.get_x() + Q.get_x() * P.get_y() );
-
-    //std::cout << ori << std::endl;
-
-    return ori;
 }
 
 bool Polygon::convex() const{
@@ -74,12 +68,12 @@ double Polygon::AngleTest(const Point P, const Point A, const Point B){
 }
 
 //Verifica se pontos não são iguais
-bool Polygon::equals( double x, double y){  
+bool Polygon::equals( double x, double y){
 
     return abs(x - y) < EPS;
 }
 
-bool Polygon::contains(const Point& P){
+bool Polygon::contains(const Point P){
 
     if (n < 3)
         return false;
@@ -90,22 +84,18 @@ bool Polygon::contains(const Point& P){
 
         auto d = orientation(P, vs[i], vs[i + 1]);
 
-        //std::cout << "\nValor de Orientation: " << d << std::endl;
+        //std::cout << "\nValor de P: " << vs[i + i].get_x() << std::endl;
 
-
-        // Pontos sobre as arestas ou vértices são considerados
-        // interiores
-        if (equals(d, 0))
+        if (equals(d,0))
             return true;
 
         auto a = AngleTest(P, vs[i], vs[i + 1]);
         sum += d > 0 ? a : -a;
-        //std::cout << sum << std::endl;
         
     }
 
     static const double PI = acos(-1.0);
-    //std::cout << "Somssssssssssssssssssa: " << (sum) << std::endl;
-    
-    return (abs(sum), 2*PI);
+
+    //std::cout << PI << std::endl;
+    return equals(fabs(sum), 2*PI);
 }
