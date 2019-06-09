@@ -1,0 +1,44 @@
+S3 =dlmread('.data/s3_red_noise.csv', ' ')
+S7 =dlmread('.data/s7.txt', ' ')
+S8 =dlmread('.data/s8.txt', ' ')
+
+scmin=16;
+scmax=4096;
+scres=19;
+exponents=linspace(log2(scmin),log2(scmax),scres);
+scale=round(2.^exponents);
+q=linspace(-5,5,101);
+m=1;
+
+% ------------- S3 -------------
+signal1 = S3;
+scale = 10:10:length(signal1);
+q = -10:1:10;
+m = 1;
+
+% ------------- S7 -------------
+signal2 = S7;
+scale = 10:10:length(signal2);
+q = -10:1:10;
+m = 1;
+
+% ------------- S8 -------------
+signal3 = S8;
+scale = 10:10:length(signal3);
+q = -10:1:10;
+m = 1;
+
+
+
+[Hq3,tq3,alpha3,falpha3,Fq3]=MFDFA1(signal1,scale,q,m,1);
+%[Hq,tq,hq,Dq,Fq]
+
+[Hq3,tq3,alpha3,falpha3,Fq3]=MFDFA1(signal2,scale,q,m,1);
+%[Hq,tq,hq,Dq,Fq]
+
+[Hq3,tq3,alpha3,falpha3,Fq3]=MFDFA1(signal3,scale,q,m,1);
+%[Hq,tq,hq,Dq,Fq]
+
+
+
+

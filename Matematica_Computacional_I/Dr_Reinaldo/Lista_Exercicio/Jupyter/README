@@ -1,4 +1,13 @@
 Requeriment
 
-conda install -c conda-forge oct2py
+Python 3
+oct2py
+waipy
+python-matplotlib
+python-numpy
+math
+statistics
+seaborn
 
+System
+libnetcdf-dev
