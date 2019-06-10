@@ -22,8 +22,8 @@ def psd(data):
 	"""Calcula o PSD de uma série temporal."""
 	
 	# Define um intervalo para realizar o ajuste da reta
-	INICIO = 1
-	FIM = 804
+	INICIO = 20
+	FIM = 380
 	
 	# O vetor com o tempo é o tamanho do número de pontos
 	N = len(data)

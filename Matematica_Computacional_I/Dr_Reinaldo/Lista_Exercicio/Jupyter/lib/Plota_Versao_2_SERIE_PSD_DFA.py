@@ -15,15 +15,17 @@ __version__ = '0.1B'
 __maintainer__ = 'Paulo Giovani'
 __email__ = 'pg_faria@yahoo.com.br'
 
+
+
 #---------------------------------------------------------------------
 # Calcula o PSD da série temporal
 #---------------------------------------------------------------------
-def psd(data):
+def psd(data,inicio_,fim_):
 	"""Calcula o PSD de uma série temporal."""
-	
+
 	# Define um intervalo para realizar o ajuste da reta
-	INICIO = 10
-	FIM = 800
+	INICIO = inicio_
+	FIM = fim_
 	
 	# O vetor com o tempo é o tamanho do número de pontos
 	N = len(data)
@@ -139,8 +141,9 @@ def dfa1d(timeSeries, grau):
 #---------------------------------------------------------------------
 # Trecho principal
 #---------------------------------------------------------------------
-def main(serie_location, name_series):
+def main(serie_location, name_series, inicio_, fim_):
 	"""Função com o código princiapl do programa."""
+
 	
 	print("\nData Analysis for "+name_series+"...\n")
 	
@@ -206,7 +209,7 @@ def main(serie_location, name_series):
     #-----------------------------------------------------------------
 	
 	# Calcula o PSD
-	freqs, power, xdata, ydata, amp, index, powerlaw, INICIO, FIM = psd(data)
+	freqs, power, xdata, ydata, amp, index, powerlaw, INICIO, FIM = psd(data,inicio_,fim_)
 
 	# O valor do beta equivale ao index
 	b = index

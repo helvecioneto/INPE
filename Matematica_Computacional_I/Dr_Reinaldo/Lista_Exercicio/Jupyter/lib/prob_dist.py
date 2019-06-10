@@ -35,7 +35,7 @@ def binomial():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(ii)Binomial N=10000',fontsize=16)
+	plt.title('(ii)Binomial N=1000',fontsize=16)
 
 def beta():
 	beta1 = np.random.beta(2, 8, 1000)  #Alpha = 2, Beta = 8
@@ -50,7 +50,7 @@ def beta():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(iii)Beta N=10000',fontsize=16)
+	plt.title('(iii)Beta N=1000',fontsize=16)
 
 def laplace():
 	laplace1 = np.random.laplace(0, .1, 1000)	#Loc , Scale, Size
@@ -67,7 +67,7 @@ def laplace():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(iv)LaPlace N=10000',fontsize=16)
+	plt.title('(iv)LaPlace N=1000',fontsize=16)
 
 def gamma():
 	gamma1 = np.random.gamma(1, 2, 1000)	#Shape, Scale, Size
@@ -86,7 +86,7 @@ def gamma():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(v)Gamma N=10000',fontsize=16)
+	plt.title('(v)Gamma N=1000',fontsize=16)
 
 def exponencial():
 	exponential1 = np.random.exponential(0.5, 1000)	#Scale
@@ -104,7 +104,7 @@ def exponencial():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(vi)Exponencial N=10000',fontsize=16)
+	plt.title('(vi)Exponencial N=1000',fontsize=16)
 
 def quiquadrado():
 	quiquadrado1 = np.random.chisquare(1, 1000)		#k graus
@@ -123,7 +123,7 @@ def quiquadrado():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(vi)Qui-Quadrado N=10000',fontsize=16)
+	plt.title('(vi)Qui-Quadrado N=1000',fontsize=16)
 
 def cauchy():
 	cauchy1 = np.random.standard_cauchy(10)
@@ -140,7 +140,7 @@ def cauchy():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(vii)Cauchy N=10000',fontsize=16)
+	plt.title('(vii)Cauchy N=1000',fontsize=16)
 
 def beta_():
 	beta1_ = np.random.beta(0.5, 0.5, 1000)  #Alpha = 2, Beta = 8
@@ -159,7 +159,7 @@ def beta_():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(vii)Beta N=10000',fontsize=16)
+	plt.title('(vii)Beta N=1000',fontsize=16)
 
 def gaussian_normal():
 	gaussian_normal1 = np.random.normal(0, 0.5, 1000)
@@ -174,4 +174,4 @@ def gaussian_normal():
 
 	plt.xlabel('Variáveis Aleatorias',fontsize=14)
 	plt.ylabel('Probabilidade',fontsize=14)
-	plt.title('(viii)Gaussian Normal N=10000',fontsize=16)
+	plt.title('(viii)Gaussian Normal N=1000',fontsize=16)
